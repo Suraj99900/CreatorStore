@@ -1,5 +1,7 @@
 package com.mod.creatorstore.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,11 +21,12 @@ public class OrderItem {
     private Long id;
 
     @Column(nullable = false)
-    private Integer Quantity;
+    private Integer quantity;
 
     @Column(name = "price_at_purchase")
     private BigDecimal priceAtPurchase;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name ="order_id",nullable = false)
     private Order order;
